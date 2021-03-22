@@ -55,3 +55,18 @@ input {
     padding-top: 10px;
     float: left;
 }
+
+@media screen and (max-width: 450px) {
+    .main-container {
+        width: 80%;
+    }
+    /* .form-wrapper {
+        max-width: auto;
+        width: 100%;
+    }
+    
+    input {
+        max-width: auto;
+        width: 100%;
+    } */
+}
