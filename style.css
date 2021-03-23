@@ -50,23 +50,9 @@ input {
     transition: all 0.3s;
 }
 
-.value {
+.value , .country-number {
     padding: 5px;
     padding-top: 10px;
     float: left;
 }
 
-@media screen and (max-width: 450px) {
-    .main-container {
-        width: 80%;
-    }
-    /* .form-wrapper {
-        max-width: auto;
-        width: 100%;
-    }
-    
-    input {
-        max-width: auto;
-        width: 100%;
-    } */
-}
