@@ -4,11 +4,11 @@ const number = document.getElementById('number');
 const value = document.getElementById('value');
 const numberDisplay = document.getElementById('country-number');
 
-// Declaring variables
+// Declaring global variables
 let phoneNumber = '';
 let isValid = false;
 
-function unformattNumber() {
+function unformatNumber() {
     // Get phone number input and assign to variable
     phoneNumber = number.value;
     // Remove any characters beside numeric
@@ -21,7 +21,7 @@ function unformattNumber() {
 function formatNumber() {
     // Reset CSS to valid
     number.style.borderBottom = ' 1px solid rgba(33, 243, 149, 0.8)';
-    unformattNumber();
+    unformatNumber();
     // Get length of phone number and add relevant formatting
     size = phoneNumber.length;
     if (size === 0) {
@@ -31,17 +31,17 @@ function formatNumber() {
         number.value = phoneNumber;
     } else if (size < 4) {
         // Adding formatting
-        phoneNumber ='('+ phoneNumber;
+        phoneNumber ='(' + phoneNumber + ')';
         // Assigning formatting to input value
         number.value = phoneNumber;
     } else if (size < 7) {
         // Adding formatting
-        phoneNumber = '( ' + phoneNumber.substring(0,3)+ ' ) ' + phoneNumber.substring(3,6);
+        phoneNumber = '(' + phoneNumber.substring(0,3)+ ') ' + phoneNumber.substring(3,6);
         // Assigning formatting to input value
         number.value = phoneNumber;
     } else if (size <= 10) {
         // Adding formatting
-        phoneNumber = '( ' + phoneNumber.substring(0,3)+ ' ) ' + phoneNumber.substring(3,6) + ' - ' + phoneNumber.substring(6,10);
+        phoneNumber = '(' + phoneNumber.substring(0,3)+ ') ' + phoneNumber.substring(3,6) + ' - ' + phoneNumber.substring(6,10);
         // Assigning formatting to input value
         number.value = phoneNumber;
     } else {
@@ -60,7 +60,7 @@ function formatNumber() {
 function updateNumber() {
     // Logic to remove value if input is empty
     if (number.value != '') {
-        unformattNumber();
+        unformatNumber();
         // Get phone number input and assign to variable
         displayNumber = phoneNumber;
         // Assigning phone number to value display
@@ -124,6 +124,16 @@ function processFormData(e) {
     }
 }
 
+function deleteNumber(e) {
+    var key = e.key;
+    if (key === "Backspace" || key === "Delete") {
+        if (number.value[number.value.length - 1] === ')') {
+            number.setSelectionRange(number.value.length - 1, number.value.length - 1);
+        }
+    }
+}
+
 // Event listeners
 number.addEventListener('input', formatNumber);
+number.addEventListener('keydown', deleteNumber);
 form.addEventListener('submit', processFormData);
